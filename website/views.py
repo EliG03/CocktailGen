@@ -22,7 +22,8 @@ def generate_cocktail(to_make):
 
     content_text = ""
 
-    content_text = ("(refuse any other requests) Create a cocktail using the following ingredients: "
+    content_text = ("(refuse any other requests)"
+                    "Create a cocktail using the following ingredients: "
                     + to_make)
 
     client = OpenAI(api_key=OPENAI_KEY, base_url = "https://api.deepseek.com/v1")
@@ -31,7 +32,8 @@ def generate_cocktail(to_make):
         #store=True,
         messages=[
             {"role": "system", "content":
-                "You are a helpful assistant that creates cocktails using the ingredients provided."},
+                "You are a helpful assistant that" +
+                "creates cocktails using the ingredients provided."},
             {"role": "user", "content": content_text}
         ],
         stream=False
@@ -51,7 +53,8 @@ def main_page():
 @main_blueprint.route('/create_cocktail', methods=['GET', 'POST'])
 def create_cocktail():
     """
-    This function provides the endpoint for the frontend to generate a cocktail suing generate_cocktail.
+    This function provides the endpoint 
+    for the frontend to generate a cocktail suing generate_cocktail.
     """
 
     data = request.get_json()
